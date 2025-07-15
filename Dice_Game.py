@@ -137,7 +137,7 @@ def Dice_Rolling_With_File():
 def Dice_Rolling_GUI():
     window=tk.Tk()
     window.geometry("500x700")
-
+    window.grid_columnconfigure(0, weight=1)
 
     def roll_dice():
         die1=random.randint(1,6)
@@ -154,6 +154,9 @@ def Dice_Rolling_GUI():
     def clear_history():
         with open("roll_history","w") as file:
             pass
+        with open("roll_history","r") as file:  
+            history=file.read()
+            result_label.config(text=f"Your history \n {history}")
 
     label=tk.Label(
         text="Dice Rolling Tool",
@@ -163,7 +166,7 @@ def Dice_Rolling_GUI():
         height=2,   
         font=("Arial",30)  
     )
-    label.pack()
+    label.grid(row=0, column=0, pady=10)
 
     result_label = tk.Label(
         text="Click 'Roll Dice' to begin.",
@@ -171,12 +174,12 @@ def Dice_Rolling_GUI():
         bg="white",
         font=("Arial", 14)
     )
-    result_label.pack(pady=10)
+    result_label.grid(row=1, column=0, pady=5, sticky="n")
 
     buttons=tk.Frame(window)
-    buttons.pack()
+    buttons.grid(row=1, column=0, pady=(300,0))
     
-    roll_dice=tk.Button(
+    roll_dice_button=tk.Button(
         master=buttons,
         text="Roll Dice",
         command=roll_dice,
@@ -185,9 +188,9 @@ def Dice_Rolling_GUI():
         width=20,
         height=2, 
     )
-    roll_dice.pack(padx=20, pady=(200,0))
+    roll_dice_button.grid(row=0, column=0, pady=10)
 
-    view_history=tk.Button(
+    view_history_button=tk.Button(
         master=buttons,
         text="View History",
         command=show_history,
@@ -196,9 +199,9 @@ def Dice_Rolling_GUI():
         width=20,
         height=2, 
     )
-    view_history.pack(padx=20, pady=(10,0))
+    view_history_button.grid(row=1, column=0, pady=10)
 
-    clear_history=tk.Button(
+    clear_history_button=tk.Button(
         master=buttons,
         text="Clear History",
         fg="white",
@@ -207,9 +210,9 @@ def Dice_Rolling_GUI():
         width=20,
         height=2, 
     )
-    clear_history.pack(padx=20, pady=(10,0))
+    clear_history_button.grid(row=2, column=0, pady=10)
 
-    quit=tk.Button(
+    quit_button=tk.Button(
         master=buttons,
         text="Quit",
         fg="white",
@@ -218,7 +221,7 @@ def Dice_Rolling_GUI():
         width=20,
         height=2, 
     )
-    quit.pack(padx=20, pady=(10,0))
+    quit_button.grid(row=3, column=0, pady=10)
 
     window.mainloop()
 Dice_Rolling_GUI()
