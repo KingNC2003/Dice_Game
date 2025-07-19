@@ -142,6 +142,9 @@ def Dice_Rolling_GUI():
     def roll_dice():
         die1=random.randint(1,6)
         die2=random.randint(1,6)
+        result_label.config(text=("Rolling Dice..."))
+        window.update()
+        time.sleep(1)
         result_label.config(text=f"You rolled: {die1} and {die2}")
         with open("roll_history","a") as file:
             file.write((f"({die1},{die2}) \n"))
@@ -183,8 +186,8 @@ def Dice_Rolling_GUI():
         master=buttons,
         text="Roll Dice",
         command=roll_dice,
-        fg="white",
-        bg="grey2",
+        fg="grey23",
+        bg="sienna1",
         width=20,
         height=2, 
     )
@@ -194,8 +197,8 @@ def Dice_Rolling_GUI():
         master=buttons,
         text="View History",
         command=show_history,
-        fg="white",
-        bg="grey2",
+        fg="grey23",
+        bg="sienna1",
         width=20,
         height=2, 
     )
@@ -204,9 +207,9 @@ def Dice_Rolling_GUI():
     clear_history_button=tk.Button(
         master=buttons,
         text="Clear History",
-        fg="white",
+        fg="grey23",
         command=clear_history,
-        bg="grey2",
+        bg="sienna1",
         width=20,
         height=2, 
     )
@@ -215,11 +218,12 @@ def Dice_Rolling_GUI():
     quit_button=tk.Button(
         master=buttons,
         text="Quit",
-        fg="white",
+        fg="grey23",
         command=window.quit,
-        bg="grey2",
+        bg="#FF8247",
         width=20,
         height=2, 
+        
     )
     quit_button.grid(row=3, column=0, pady=10)
 
