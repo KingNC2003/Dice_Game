@@ -3,6 +3,7 @@ import random
 import os
 import time
 import tkinter as tk
+from PIL import Image, ImageTk
 
 # FIRST TASK
 def Prompted_Calculator():
@@ -178,6 +179,12 @@ def Dice_Rolling_GUI():
         font=("Arial", 14)
     )
     result_label.grid(row=1, column=0, pady=5, sticky="n")
+    image=Image.open("two_dice.jpg"),
+   
+    image_display=tk.Label(
+        tk_img = ImageTk.PhotoImage(image)
+    )
+    image_display.grid(row=1, column=0, pady=5, sticky="n")
 
     buttons=tk.Frame(window)
     buttons.grid(row=1, column=0, pady=(300,0))
