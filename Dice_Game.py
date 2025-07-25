@@ -138,6 +138,7 @@ def Dice_Rolling_With_File():
 def Dice_Rolling_GUI():
     window=tk.Tk()
     window.geometry("500x700")
+    window.grid_rowconfigure(1, weight=1)
     window.grid_columnconfigure(0, weight=1)
 
     def roll_dice():
@@ -162,6 +163,13 @@ def Dice_Rolling_GUI():
             history=file.read()
             result_label.config(text=f"Your history \n {history}")
 
+    image = Image.open("two_dice.jpg")
+    resized_image = image.resize((100, 100))
+    tk_img = ImageTk.PhotoImage(resized_image)
+    background = tk.Label(window, image=tk_img)
+    background.image = tk_img
+    background.grid(row=3, column=0, pady=(0, 30), sticky="n")
+
     label=tk.Label(
         text="Dice Rolling Tool",
         fg="white",
@@ -176,18 +184,16 @@ def Dice_Rolling_GUI():
         text="Click 'Roll Dice' to begin.",
         fg="black",
         bg="white",
-        font=("Arial", 14)
+        font=("Arial", 14),
+        width=10,       
+        height=8,       
+        wraplength=400, 
+        justify="center"
     )
-    result_label.grid(row=1, column=0, pady=5, sticky="n")
-    image=Image.open("two_dice.jpg"),
-   
-    image_display=tk.Label(
-        tk_img = ImageTk.PhotoImage(image)
-    )
-    image_display.grid(row=1, column=0, pady=5, sticky="n")
+    result_label.grid(row=1, column=0, sticky="new", padx=10, pady=(10, 0))
 
     buttons=tk.Frame(window)
-    buttons.grid(row=1, column=0, pady=(300,0))
+    buttons.grid(row=3, column=0, pady=(200,0))
     
     roll_dice_button=tk.Button(
         master=buttons,
